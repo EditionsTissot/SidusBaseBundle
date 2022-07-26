@@ -39,7 +39,7 @@ class BubblePreSetDataEventExtension extends AbstractTypeExtension
                         if ($child instanceof FormInterface && $child->getConfig()->getInheritData()) {
                             // Create a new event and dispatch it to the child
                             $childEvent = new FormEvent($child, $event->getData());
-                            $child->getConfig()->getEventDispatcher()->dispatch($eventName, $childEvent);
+                            $child->getConfig()->getEventDispatcher()->dispatch($childEvent, $eventName);
                         }
                     }
                 }
