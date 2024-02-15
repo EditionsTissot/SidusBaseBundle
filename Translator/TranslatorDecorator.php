@@ -26,7 +26,7 @@ class TranslatorDecorator implements TranslatorInterface, TranslatorBagInterface
     /**
      * {@inheritdoc}
      */
-    public function trans($id, array $parameters = [], $domain = null, $locale = null)
+    public function trans($id, array $parameters = [], $domain = null, $locale = null): string
     {
         if (false === $domain) {
             return strtr($id, $parameters);
@@ -58,7 +58,7 @@ class TranslatorDecorator implements TranslatorInterface, TranslatorBagInterface
     /**
      * {@inheritdoc}
      */
-    public function getLocale()
+    public function getLocale(): string
     {
         return $this->translator->getLocale();
     }
@@ -72,13 +72,13 @@ class TranslatorDecorator implements TranslatorInterface, TranslatorBagInterface
      *
      * @throws InvalidArgumentException If the locale contains invalid characters
      */
-    public function getCatalogue($locale = null)
+    public function getCatalogue($locale = null): MessageCatalogueInterface
     {
         if ($this->translator instanceof TranslatorBagInterface) {
             return $this->translator->getCatalogue($locale);
         }
 
-        return null;
+        throw new InvalidArgumentException('Translator does not implement TranslatorBagInterface');
     }
 
     public function getCatalogues(): array
