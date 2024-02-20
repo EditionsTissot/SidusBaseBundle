@@ -40,7 +40,7 @@ class ControllerResolver implements ControllerResolverInterface
     /**
      * {@inheritdoc}
      */
-    public function getController(Request $request)
+    public function getController(Request $request): callable|false
     {
         if (!$request->attributes->get('_controller')) {
             $route = $request->attributes->get('_route');
